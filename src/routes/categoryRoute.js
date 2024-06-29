@@ -6,12 +6,21 @@ import {
   getCategory,
   updateCategory,
 } from "../services/cateoryService.js";
+import {
+  createCategoryValidator,
+  deleteCategoryValidator,
+  getCategoryValidator,
+  updateCategoryValidator,
+} from "../utils/validators/categoryvalidator.js";
 
 const router = Router();
-router.route("/").get(getCategories).post(createCategory);
+router
+  .route("/")
+  .get(getCategories)
+  .post(createCategoryValidator, createCategory);
 router
   .route("/:id")
-  .get(getCategory)
-  .patch(updateCategory)
-  .delete(deleteCategory);
+  .get(getCategoryValidator, getCategory)
+  .patch(updateCategoryValidator, updateCategory)
+  .delete(deleteCategoryValidator, deleteCategory);
 export default router;
