@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 import { Router } from "express";
 import {
   createCategory,
@@ -12,8 +13,12 @@ import {
   getCategoryValidator,
   updateCategoryValidator,
 } from "../utils/validators/categoryvalidator.js";
+import subCategoriesRoute from "../routes/subCategoryRoute.js";
 
 const router = Router();
+
+router.use("/:categoryId/subcategories", subCategoriesRoute);
+
 router
   .route("/")
   .get(getCategories)

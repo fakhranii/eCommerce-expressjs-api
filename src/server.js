@@ -3,6 +3,8 @@ import morgan from "morgan";
 import dotenv from "dotenv";
 import db from "./config/db.js";
 import categoryRoute from "./routes/categoryRoute.js";
+import subCategoryRoute from "./routes/subCategoryRoute.js";
+import brandRoute from "./routes/brandRoute.js";
 import { ApiError } from "./utils/apiError.js";
 import { globalErrorHandler } from "./middlewares/errorMiddleware.js";
 dotenv.config();
@@ -19,6 +21,8 @@ if (process.env.NODE_ENV === "development") {
 
 // Mount Routes
 app.use("/api/v1/categories", categoryRoute);
+app.use("/api/v1/subcategories", subCategoryRoute);
+app.use("/api/v1/brands", brandRoute);
 app.all("*", (req, res, next) => {
   next(new ApiError(`Can't find this route: ${req.originalUrl}`, 400));
 });

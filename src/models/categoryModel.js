@@ -18,6 +18,6 @@ const categorySchema = Schema(
   { timestamps: true } // create to fields in db -> createdAT & updatedAT
 );
 
-const CategoryModel = model("category", categorySchema);
+const CategoryModel = model("Category", categorySchema);
 
 export default CategoryModel;

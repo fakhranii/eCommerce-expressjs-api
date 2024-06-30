@@ -20,8 +20,8 @@ export const createCategory = asyncHandler(async (req, res) => {
  * @access public
  */
 export const getCategories = asyncHandler(async (req, res) => {
-  const { page } = req.query * 1 || 1;
-  const { limit } = req.query * 1 || 5;
+  const page = req.query.page * 1 || 1;
+  const limit = req.query.limit * 1 || 5;
   const skip = (page - 1) * limit;
   const categories = await CategoryModel.find({}).skip(skip).limit(limit);
   res.status(200).json({ page, results: categories.length, data: categories });
@@ -49,7 +49,7 @@ export const getCategory = asyncHandler(async (req, res, next) => {
 export const updateCategory = asyncHandler(async (req, res, next) => {
   const { id } = req.params;
   const { name } = req.body;
-  const category = await CategoryModel.findOneAndUpdate(
+  const category = await CategoryModel.findByIdAndUpdate(
     { _id: id },
     { name, slug: slugify(name) },
     { new: true } //* this option is to return a category after the update completes
