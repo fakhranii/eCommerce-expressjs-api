@@ -1,6 +1,6 @@
 import slugify from "slugify";
 import asyncHandler from "express-async-handler";
-import { ApiError } from "../utils/apiError.js";
+import { ApiError } from "../utils/classes/apiError.js";
 import BrandModel from "../models/brandModel.js";
 
 /**

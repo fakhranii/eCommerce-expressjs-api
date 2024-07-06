@@ -2,7 +2,7 @@
 import asyncHandler from "express-async-handler";
 import slugify from "slugify";
 import SubCategoryModel from "../models/subCategoryModel.js";
-import { ApiError } from "../utils/apiError.js";
+import { ApiError } from "../utils/classes/apiError.js";
 
 export const setCategoryIdToBody = (req, res, next) => {
   if (!req.body.category) req.body.category = req.params.categoryId;
@@ -41,7 +41,7 @@ export const getSubCategory = asyncHandler(async (req, res, next) => {
 
 export const createFilterObj = (req, res, next) => {
   let filterObj = {};
-  if (req.params.categoryId) filterObjم = { category: req.params.categoryId };
+  if (req.params.categoryId) filterObj = { category: req.params.categoryId };
   req.filterObj = filterObj;
   next();
 };

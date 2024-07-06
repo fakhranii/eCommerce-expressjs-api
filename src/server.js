@@ -1,13 +1,17 @@
 import express from "express";
 import morgan from "morgan";
-import dotenv from "dotenv";
-import db from "./config/db.js";
 import categoryRoute from "./routes/categoryRoute.js";
 import subCategoryRoute from "./routes/subCategoryRoute.js";
 import brandRoute from "./routes/brandRoute.js";
-import { ApiError } from "./utils/apiError.js";
-import { globalErrorHandler } from "./middlewares/errorMiddleware.js";
+import productRoute from "./routes/productRoute.js";
+import db from "./config/database.js";
+import { ApiError } from "./utils/classes/apiError.js";
+import { globalErrorHandler } from "./utils/middlewares/errorMiddleware.js";
+import dotenv from "dotenv";
 dotenv.config();
+
+// DB connection
+db();
 
 // express app
 const app = express();
@@ -23,6 +27,8 @@ if (process.env.NODE_ENV === "development") {
 app.use("/api/v1/categories", categoryRoute);
 app.use("/api/v1/subcategories", subCategoryRoute);
 app.use("/api/v1/brands", brandRoute);
+app.use("/api/v1/brands", brandRoute);
+app.use("/api/v1/products", productRoute);
 app.all("*", (req, res, next) => {
   next(new ApiError(`Can't find this route: ${req.originalUrl}`, 400));
 });

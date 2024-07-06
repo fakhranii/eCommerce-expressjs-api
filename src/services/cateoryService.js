@@ -1,7 +1,7 @@
 import CategoryModel from "../models/categoryModel.js";
 import slugify from "slugify";
 import asyncHandler from "express-async-handler";
-import { ApiError } from "../utils/apiError.js";
+import { ApiError } from "../utils/classes/apiError.js";
 
 /**
  * @desc create a new category
