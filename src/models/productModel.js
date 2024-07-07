@@ -72,6 +72,15 @@ const productSchema = Schema(
   { timestamps: true }
 );
 
+// Mongoose query middleware
+productSchema.pre(/^find/, function (next) {
+  this.populate({
+    path: "category",
+    select: "name",
+  });
+  next();
+});
+
 const ProductModel = model("Product", productSchema);
 
 export default ProductModel;

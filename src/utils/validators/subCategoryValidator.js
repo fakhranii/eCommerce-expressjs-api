@@ -1,5 +1,6 @@
-import { check, param } from "express-validator";
+import { body, check, param } from "express-validator";
 import { validationMiddleware } from "../middlewares/validatorMiddleware.js";
+import slugify from "slugify";
 
 // first the rules, then the validation Middleware error handling to catch the errors from the rules
 
@@ -21,6 +22,10 @@ export const createSubCategoryValidator = [
     .withMessage("subcategory must be belong to category")
     .isMongoId()
     .withMessage("Invalid Category id format"),
+  body("name").custom((value, { req }) => {
+    req.body.slug = slugify(value);
+    return true;
+  }),
   validationMiddleware,
 ];
 
@@ -29,6 +34,10 @@ export const updateSubCategoryValidator = [
     .notEmpty()
     .isMongoId()
     .withMessage(`Invalid SubCategory id format`),
+  body("name").custom((value, { req }) => {
+    req.body.slug = slugify(value);
+    return true;
+  }),
   validationMiddleware,
 ];
 
