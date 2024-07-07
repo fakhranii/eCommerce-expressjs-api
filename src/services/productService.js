@@ -1,6 +1,7 @@
 import asyncHandler from "express-async-handler";
 import ProductModel from "../models/productModel.js";
 import { ApiError } from "../utils/classes/apiError.js";
+import { ApiFeatures } from "../utils/classes/apiFeatures.js";
 import slugify from "slugify";
 /**
  * @desc create a new product
@@ -19,56 +20,21 @@ export const createProduct = asyncHandler(async (req, res) => {
  * @access public
  */
 export const getProducts = asyncHandler(async (req, res) => {
-  // 1 ) filtering
-  const queryObject = { ...req.query }; // copy the internal value of req.query and assign it in queryObject
-  const excludesFields = ["page", "sort", "limit", "fields", "keyword"];
-  excludesFields.forEach((field) => delete queryObject[field]);
-
-  // Apply filteration using [ gte, gt, lte, lt]
-  let queryStr = JSON.stringify(queryObject);
-  queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
-
-  // 2 ) pagination
-  const page = req.query.page * 1 || 1;
-  const limit = req.query.limit * 1 || 50;
-  const skip = (page - 1) * limit;
-
   // 3 ) build query
-  let mongooseQuery = ProductModel.find(JSON.parse(queryStr))
-    .skip(skip)
-    .limit({ limit })
-    .populate({ path: "category", select: "name -_id" });
+  const documentsCount = await ProductModel.countDocuments();
+  const apiFeatures = new ApiFeatures(ProductModel.find(), req.query)
+    .paginate(documentsCount)
+    .filter()
+    .search()
+    .selectFields()
+    .sort();
 
-  // 4 ) Sorting
-  if (req.query.sort) {
-    const sortBy = req.query.sort.split(",").join(" ");
-    mongooseQuery = mongooseQuery.sort(sortBy);
-  } else {
-    mongooseQuery = mongooseQuery.sort("-createdAt");
-  }
-
-  // 5 ) limiting
-  if (req.query.fields) {
-    const fields = req.query.fields.split(",").join(" ");
-    mongooseQuery = mongooseQuery.select(fields);
-  } else {
-    mongooseQuery = mongooseQuery.select("-__v");
-  }
-
-  if (req.query.keyword) {
-    let query = {};
-    query.$or = [
-      // $options: "i" -> means it search for the keyword in two formats capital or small letters
-      { title: { $regex: req.query.keyword, $options: "i" } },
-      { description: { $regex: req.query.keyword, $options: "i" } },
-    ];
-    mongooseQuery = mongooseQuery.find(query);
-  }
-
-  // 7 ) excute the query
+  //  excute the query
+  const { mongooseQuery, paginationResult } = apiFeatures;
   const products = await mongooseQuery;
-
-  res.status(200).json({ results: products.length, page, data: products });
+  res
+    .status(200)
+    .json({ paginationResult, results: products.length, data: products });
 });
 
 /**
