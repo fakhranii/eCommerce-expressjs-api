@@ -18,6 +18,13 @@ const categorySchema = Schema(
   { timestamps: true } // create to fields in db -> createdAT & updatedAT
 );
 
+categorySchema.post(["init", "save"], (doc) => {
+  // return image base url + image name in the response
+  if (doc.image) {
+    const imageUrl = `${process.env.BASE_URL}/categories/${doc.image}`;
+    doc.image = imageUrl;
+  }
+});
 const CategoryModel = model("Category", categorySchema);
 
 export default CategoryModel;

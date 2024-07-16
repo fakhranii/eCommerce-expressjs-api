@@ -39,10 +39,12 @@ const productSchema = Schema(
       type: Number,
     },
     colors: [String],
+
     imageCover: {
       type: String,
       required: [true, "Product image cover is required"],
     },
+
     images: [String],
     category: {
       type: Schema.ObjectId,
@@ -72,13 +74,30 @@ const productSchema = Schema(
   { timestamps: true }
 );
 
-// Mongoose query middleware
+// Mongoose query middleware -> return the product with its parent category
 productSchema.pre(/^find/, function (next) {
   this.populate({
     path: "category",
     select: "name",
   });
   next();
+});
+
+// return image base url + image name in the response
+productSchema.post(["init", "save"], (doc) => {
+  if (doc.imageCover) {
+    const imageCoverUrl = `${process.env.BASE_URL}/products/${doc.imageCover}`;
+    doc.imageCover = imageCoverUrl;
+  }
+
+  if (doc.images) {
+    const productImages = [];
+    doc.images.map((image) => {
+      const imagesUrl = `${process.env.BASE_URL}/products/${image}`;
+      productImages.push(imagesUrl);
+      doc.images = productImages;
+    });
+  }
 });
 
 const ProductModel = model("Product", productSchema);

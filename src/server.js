@@ -1,5 +1,12 @@
+import * as path from "path";
+import { fileURLToPath } from "url";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 import express from "express";
 import morgan from "morgan";
+import dotenv from "dotenv";
+
 import categoryRoute from "./routes/categoryRoute.js";
 import subCategoryRoute from "./routes/subCategoryRoute.js";
 import brandRoute from "./routes/brandRoute.js";
@@ -7,7 +14,6 @@ import productRoute from "./routes/productRoute.js";
 import db from "./config/database.js";
 import { ApiError } from "./utils/classes/apiError.js";
 import { globalErrorHandler } from "./utils/middlewares/errorMiddleware.js";
-import dotenv from "dotenv";
 dotenv.config();
 
 // DB connection
@@ -18,6 +24,7 @@ const app = express();
 
 //? Always we use middlewares before Routes
 app.use(express.json());
+app.use(express.static(path.join(__dirname, "uploads")));
 
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev")); //* when we need to trigger a middleware we use (app.use(middleware))

@@ -15,13 +15,19 @@
 						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"sayed\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "desoahtfghad",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "postman-cloud:///1eef0edf-8f2e-4f50-92fa-850422d811a8"
 								}
-							}
+							]
 						},
 						"url": {
 							"raw": "localhost:8000/api/v1/categories",
@@ -88,7 +94,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8000/api/v1/categories/667ea4683f97cb11eca4e060",
+							"raw": "localhost:8000/api/v1/categories/6693a59942a453efdde5e83d",
 							"host": [
 								"localhost"
 							],
@@ -97,7 +103,7 @@
 								"api",
 								"v1",
 								"categories",
-								"667ea4683f97cb11eca4e060"
+								"6693a59942a453efdde5e83d"
 							]
 						}
 					},
@@ -109,16 +115,23 @@
 						"method": "PATCH",
 						"header": [],
 						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"fakhranyy aheed\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "updated",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "postman-cloud:///1eef0edf-8f2e-4f50-92fa-850422d811a8"
 								}
-							}
+							]
 						},
 						"url": {
-							"raw": "localhost:8000/api/v1/categories/667ea4683f97cb11eca4e060s",
+							"raw": "localhost:8000/api/v1/categories/6692248a5d735bdef32e1bb7",
 							"host": [
 								"localhost"
 							],
@@ -127,7 +140,7 @@
 								"api",
 								"v1",
 								"categories",
-								"667ea4683f97cb11eca4e060s"
+								"6692248a5d735bdef32e1bb7"
 							]
 						}
 					},
@@ -174,13 +187,19 @@
 						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"tt games\"\r\n    }",
-							"options": {
-								"raw": {
-									"language": "json"
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "test oneldd",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/Ziad El-Fakhrany/Pictures/WhatsApp Image 2024-05-06 at 11.37.05 PM.jpeg"
 								}
-							}
+							]
 						},
 						"url": {
 							"raw": "localhost:8000/api/v1/brands",
@@ -258,7 +277,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8000/api/v1/brands/668199eeec38b3fad112eeb7",
+							"raw": "localhost:8000/api/v1/brands/66926720690aadf999c2b6aa",
 							"host": [
 								"localhost"
 							],
@@ -267,7 +286,7 @@
 								"api",
 								"v1",
 								"brands",
-								"668199eeec38b3fad112eeb7"
+								"66926720690aadf999c2b6aa"
 							]
 						}
 					},
@@ -279,16 +298,23 @@
 						"method": "PATCH",
 						"header": [],
 						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"ziad games\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "ziad updated",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "postman-cloud:///1eef0edf-8f2e-4f50-92fa-850422d811a8"
 								}
-							}
+							]
 						},
 						"url": {
-							"raw": "localhost:8000/api/v1/brands/668199eeec38b3fad112eeb7",
+							"raw": "localhost:8000/api/v1/brands/6693a7b1c627ed5e3701dd09",
 							"host": [
 								"localhost"
 							],
@@ -297,7 +323,7 @@
 								"api",
 								"v1",
 								"brands",
-								"668199eeec38b3fad112eeb7"
+								"6693a7b1c627ed5e3701dd09"
 							]
 						}
 					},
@@ -345,7 +371,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"test 7\",\r\n    \"category\": \"667ea4683f97cb11eca4e060\"\r\n\r\n}",
+							"raw": "{\r\n    \"name\": \"sayed zayan\",\r\n    \"category\": \"667ea4683f97cb11eca4e060\"\r\n\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -446,7 +472,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"tik tok\",\r\n    \"category\": \"66812b8cc623cb5601f1ecb4\"\r\n\r\n}",
+							"raw": "{\r\n    \"name\": \"tik teesk\",\r\n    \"category\": \"66812b8cc623cb5601f1ecb4\"\r\n\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -454,7 +480,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8000/api/v1/subcategories/66810f820975abebf8bff955",
+							"raw": "localhost:8000/api/v1/subcategories/66857e2e78c789f1220a0a96",
 							"host": [
 								"localhost"
 							],
@@ -463,7 +489,7 @@
 								"api",
 								"v1",
 								"subcategories",
-								"66810f820975abebf8bff955"
+								"66857e2e78c789f1220a0a96"
 							]
 						}
 					},
@@ -580,13 +606,45 @@
 						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "raw",
-							"raw": "  {\r\n     \"title\": \"Fjallraven - Foldsdsack No. 1 Backpack, Fits 15 Laptops\",\r\n    \"quantity\": 10,\r\n    \"sold\": 25,\r\n    \"price\": 109.95,\r\n    \"priceAfterDiscount\": 100,\r\n    \"description\": \"Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday\",\r\n    \"category\": \"66857d852d70fc2ff8ac0448\",\r\n    \"imageCover\": \"https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg\",\r\n    \"ratingsAverage\": 4.3,\r\n    \"ratingsQuantity\": 20,\r\n    \"subcategories\": [\"66857e2e78c789f1220a0a96\"]\r\n  }",
-							"options": {
-								"raw": {
-									"language": "json"
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "NEW product",
+									"contentType": "",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "50",
+									"type": "text"
+								},
+								{
+									"key": "quantity",
+									"value": "25",
+									"type": "text"
+								},
+								{
+									"key": "sold",
+									"value": "25",
+									"type": "text"
+								},
+								{
+									"key": "priceAfterDiscount",
+									"value": "40",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Your perfect pack for everyday use and walks",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "6693a5f7d6cc34222b18e1ab",
+									"type": "text"
 								}
-							}
+							]
 						},
 						"url": {
 							"raw": "localhost:8000/api/v1/products",
@@ -609,7 +667,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8000/api/v1/products?limit=5",
+							"raw": "localhost:8000/api/v1/products",
 							"host": [
 								"localhost"
 							],
@@ -642,7 +700,18 @@
 								},
 								{
 									"key": "limit",
-									"value": "5"
+									"value": "5",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "keyword",
+									"value": "ziad",
+									"disabled": true
 								}
 							]
 						}
@@ -677,7 +746,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"quantity\" : 7875\r\n}",
+							"raw": "{\r\n    \"title\": \"ziad las\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -685,7 +754,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8000/api/v1/products/6683eed4a7410b603587feaf",
+							"raw": "localhost:8000/api/v1/products/668692f5b9b2f26618fd6cb1",
 							"host": [
 								"localhost"
 							],
@@ -694,7 +763,7 @@
 								"api",
 								"v1",
 								"products",
-								"6683eed4a7410b603587feaf"
+								"668692f5b9b2f26618fd6cb1"
 							]
 						}
 					},

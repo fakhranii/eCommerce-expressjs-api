@@ -8,8 +8,4 @@ const db = () => {
   });
 };
 
-// .catch((err) => {
-//   console.error(`Database Error: ${err}`);
-//   process.exit(1);
-// });
 export default db;

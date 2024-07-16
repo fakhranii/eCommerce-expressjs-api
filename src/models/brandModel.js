@@ -17,6 +17,13 @@ const brandSchema = Schema(
   },
   { timestamps: true } // create to fields in db -> createdAT & updatedAT
 );
+brandSchema.post(["init", "save"], (doc) => {
+  // return image base url + image name in the response
+  if (doc.image) {
+    const imageUrl = `${process.env.BASE_URL}/brands/${doc.image}`;
+    doc.image = imageUrl;
+  }
+});
 
 const BrandModel = model("Brand", brandSchema);
 
