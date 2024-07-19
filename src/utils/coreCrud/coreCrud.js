@@ -41,7 +41,7 @@ const createOne = (Model) =>
     res.status(201).json({ data: newDocument });
   });
 
-const getAll = (Model) =>
+const getAll = (Model) => 
   asyncHandler(async (req, res) => {
     let filter = {};
     if (req.filterObj) {

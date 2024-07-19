@@ -11,6 +11,8 @@ import categoryRoute from "./routes/categoryRoute.js";
 import subCategoryRoute from "./routes/subCategoryRoute.js";
 import brandRoute from "./routes/brandRoute.js";
 import productRoute from "./routes/productRoute.js";
+import userRoute from "./routes/userRoute.js";
+import authRoute from "./routes/authRoute.js";
 import db from "./config/database.js";
 import { ApiError } from "./utils/classes/apiError.js";
 import { globalErrorHandler } from "./utils/middlewares/errorMiddleware.js";
@@ -31,11 +33,12 @@ if (process.env.NODE_ENV === "development") {
 }
 
 // Mount Routes
+app.use("/api/v1/users", userRoute);
 app.use("/api/v1/categories", categoryRoute);
 app.use("/api/v1/subcategories", subCategoryRoute);
 app.use("/api/v1/brands", brandRoute);
-app.use("/api/v1/brands", brandRoute);
 app.use("/api/v1/products", productRoute);
+app.use("/api/v1/auth", authRoute);
 app.all("*", (req, res, next) => {
   next(new ApiError(`Can't find this route: ${req.originalUrl}`, 400));
 });
