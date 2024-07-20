@@ -1,5 +1,5 @@
 import multer from "multer";
-import { ApiError } from "../classes/apiError.js";
+import { ApiError } from "../utils/classes/apiError.js";
 
 const multerFilter = () => {
   //! 1- DiskStorage engine -> if you store the Images in the project storage

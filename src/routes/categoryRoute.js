@@ -16,6 +16,7 @@ import {
   updateCategoryValidator,
 } from "../utils/validators/categoryvalidator.js";
 import subCategoriesRoute from "../routes/subCategoryRoute.js";
+import { verifyToken } from "../services/authService.js";
 
 const router = Router();
 router.use("/:categoryId/subcategories", subCategoriesRoute);
@@ -24,6 +25,7 @@ router
   .route("/")
   .get(getCategories)
   .post(
+    verifyToken,
     uploadCategoryImage,
     resizeImages,
     createCategoryValidator,

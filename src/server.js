@@ -15,7 +15,7 @@ import userRoute from "./routes/userRoute.js";
 import authRoute from "./routes/authRoute.js";
 import db from "./config/database.js";
 import { ApiError } from "./utils/classes/apiError.js";
-import { globalErrorHandler } from "./utils/middlewares/errorMiddleware.js";
+import { globalErrorHandler } from "./middlewares/errorMiddleware.js";
 dotenv.config();
 
 // DB connection

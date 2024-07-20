@@ -1,5 +1,5 @@
 import { body, check, param } from "express-validator";
-import { validationMiddleware } from "../middlewares/validatorMiddleware.js";
+import { validationMiddleware } from "../../middlewares/validatorMiddleware.js";
 import slugify from "slugify";
 
 // first the rules, then the validation Middleware error handling to catch the errors from the rules

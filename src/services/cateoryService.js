@@ -9,8 +9,8 @@ import {
   getAll,
   getOne,
   updateOne,
-} from "../utils/coreCrud/coreCrud.js";
-import { uploadSingleImage } from "../utils/middlewares/uploadImagesMiddleware.js";
+} from "./handlerFactory.js";
+import { uploadSingleImage } from "../middlewares/uploadImagesMiddleware.js";
 
 // Upload single image
 export const uploadCategoryImage = uploadSingleImage("image");

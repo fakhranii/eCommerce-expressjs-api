@@ -3,8 +3,8 @@ import { v4 as uuidv4 } from "uuid";
 import sharp from "sharp";
 import bcrypt from "bcryptjs";
 
-import { uploadSingleImage } from "../utils/middlewares/uploadImagesMiddleware.js";
-import { createOne, getAll, getOne } from "../utils/coreCrud/coreCrud.js";
+import { uploadSingleImage } from "../middlewares/uploadImagesMiddleware.js";
+import { createOne, getAll, getOne } from "./handlerFactory.js";
 import UserModel from "../models/userModel.js";
 
 /**
@@ -100,6 +100,7 @@ export const changeUserPassword = asyncHandler(async (req, res, next) => {
     req.params.id,
     {
       password: await bcrypt.hash(req.body.newPassword, 12),
+      passwordChangedAt: Date.now(),
     },
     {
       new: true,

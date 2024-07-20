@@ -5,7 +5,7 @@ import {
   getAll,
   getOne,
   updateOne,
-} from "../utils/coreCrud/coreCrud.js";
+} from "./handlerFactory.js";
 
 // Nested Route
 export const setCategoryIdToBody = (req, res, next) => {

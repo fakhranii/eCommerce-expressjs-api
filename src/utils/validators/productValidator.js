@@ -1,6 +1,6 @@
 import slugify from "slugify";
 import { check, body } from "express-validator";
-import { validationMiddleware } from "../middlewares/validatorMiddleware.js";
+import { validationMiddleware } from "../../middlewares/validatorMiddleware.js";
 import CategoryModel from "../../models/categoryModel.js";
 import SubCategoryModel from "../../models/subCategoryModel.js";
 

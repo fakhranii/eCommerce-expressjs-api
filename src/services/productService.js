@@ -9,8 +9,8 @@ import {
   getAll,
   getOne,
   updateOne,
-} from "../utils/coreCrud/coreCrud.js";
-import { uploadMixedImages } from "../utils/middlewares/uploadImagesMiddleware.js";
+} from "./handlerFactory.js";
+import { uploadMixedImages } from "../middlewares/uploadImagesMiddleware.js";
 
 export const uploadProductImages = uploadMixedImages([
   { name: "imageCover", maxCount: 1 },

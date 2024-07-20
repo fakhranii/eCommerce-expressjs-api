@@ -12,6 +12,8 @@ const userSchema = Schema(
       type: String,
       lowercase: true,
     },
+    passwordChangedAt: Date,
+
     email: {
       type: String,
       required: [true, "email required"],

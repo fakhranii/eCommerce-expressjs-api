@@ -1,6 +1,6 @@
 import asyncHandler from "express-async-handler";
-import { ApiError } from "../classes/apiError.js";
-import { ApiFeatures } from "../classes/apiFeatures.js";
+import { ApiError } from "../utils/classes/apiError.js";
+import { ApiFeatures } from "../utils/classes/apiFeatures.js";
 
 const deleteOne = (Model) =>
   asyncHandler(async (req, res, next) => {
@@ -41,7 +41,7 @@ const createOne = (Model) =>
     res.status(201).json({ data: newDocument });
   });
 
-const getAll = (Model) => 
+const getAll = (Model) =>
   asyncHandler(async (req, res) => {
     let filter = {};
     if (req.filterObj) {
