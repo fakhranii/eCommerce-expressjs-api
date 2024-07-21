@@ -47,6 +47,11 @@ export const login = asyncHandler(async (req, res, next) => {
   res.status(200).json({ data: user, token });
 });
 
+/**
+ * @desc   make sure the user in authenticated
+ * @route  POST /api/v1/auth/a
+ * @access public
+ */
 export const verifyToken = asyncHandler(async (req, res, next) => {
   // 1 ) check if token exists, if exist get it
   let token;
@@ -98,3 +103,16 @@ export const verifyToken = asyncHandler(async (req, res, next) => {
   req.user = currentUser;
   next();
 });
+
+export const allowedTo = (...roles) =>
+  asyncHandler(async (req, res, next) => {
+    // 1 ) access the roles
+    // 2 ) access logged user
+
+    if (!roles.includes(req.user.role)) {
+      return next(
+        new ApiError("You are not allowed to access this route", 403)
+      );
+    }
+    next();
+  });

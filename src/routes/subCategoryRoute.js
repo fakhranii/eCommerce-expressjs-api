@@ -14,19 +14,36 @@ import {
   updateSubCategoryValidator,
   deleteSubCategoryValidator,
 } from "../utils/validators/subCategoryValidator.js";
+import { allowedTo, verifyToken } from "../services/authService.js";
 
 //? mergeParmas -> Allow us to access params on another routers
 const router = Router({ mergeParams: true });
 
 router
   .route("/")
-  .post(setCategoryIdToBody, createSubCategoryValidator, createSubCategory)
+  .post(
+    verifyToken,
+    allowedTo("admin", "manager"),
+    setCategoryIdToBody,
+    createSubCategoryValidator,
+    createSubCategory
+  )
   .get(createFilterObj, getSubCategories);
 router
   .route("/:id")
   .get(getSubCategoryValidator, getSubCategory)
-  .patch(updateSubCategoryValidator, updateSubcategory)
-  .delete(deleteSubCategoryValidator, deleteSubcategory);
+  .patch(
+    verifyToken,
+    allowedTo("admin", "manager"),
+    updateSubCategoryValidator,
+    updateSubcategory
+  )
+  .delete(
+    verifyToken,
+    allowedTo("admin"),
+    deleteSubCategoryValidator,
+    deleteSubcategory
+  );
 
 // remember to mount this routes in main file (server.js)
 export default router;

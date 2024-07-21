@@ -52,11 +52,10 @@
 							]
 						},
 						"url": {
-							"raw": "localhost:8000/api/v1/categories",
+							"raw": "{{baseUrl}}/api/v1/categories",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "8000",
 							"path": [
 								"api",
 								"v1",
@@ -84,11 +83,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8000/api/v1/categories",
+							"raw": "{{baseUrl}}/api/v1/categories",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "8000",
 							"path": [
 								"api",
 								"v1",
@@ -116,11 +114,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8000/api/v1/categories/6693a59942a453efdde5e83d",
+							"raw": "{{baseUrl}}/api/v1/categories/6693a59942a453efdde5e83d",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "8000",
 							"path": [
 								"api",
 								"v1",
@@ -153,11 +150,10 @@
 							]
 						},
 						"url": {
-							"raw": "localhost:8000/api/v1/categories/6692248a5d735bdef32e1bb7",
+							"raw": "{{baseUrl}}/api/v1/categories/6692248a5d735bdef32e1bb7",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "8000",
 							"path": [
 								"api",
 								"v1",
@@ -183,11 +179,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8000/api/v1/categories/667bcfb1f4d82a9286be4517",
+							"raw": "{{baseUrl}}/api/v1/categories/667bcfb1f4d82a9286be4517",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "8000",
 							"path": [
 								"api",
 								"v1",
@@ -224,11 +219,10 @@
 							]
 						},
 						"url": {
-							"raw": "localhost:8000/api/v1/brands",
+							"raw": "{{baseUrl}}/api/v1/brands",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "8000",
 							"path": [
 								"api",
 								"v1",
@@ -256,11 +250,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8000/api/v1/brands?keyword=games",
+							"raw": "{{baseUrl}}/api/v1/brands?keyword=games",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "8000",
 							"path": [
 								"api",
 								"v1",
@@ -299,11 +292,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8000/api/v1/brands/66926720690aadf999c2b6aa",
+							"raw": "{{baseUrl}}/api/v1/brands/66926720690aadf999c2b6aa",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "8000",
 							"path": [
 								"api",
 								"v1",
@@ -336,11 +328,10 @@
 							]
 						},
 						"url": {
-							"raw": "localhost:8000/api/v1/brands/6693a7b1c627ed5e3701dd09",
+							"raw": "{{baseUrl}}/api/v1/brands/6693a7b1c627ed5e3701dd09",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "8000",
 							"path": [
 								"api",
 								"v1",
@@ -366,11 +357,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8000/api/v1/brands/668199eeec38b3fad112eeb7",
+							"raw": "{{baseUrl}}/api/v1/brands/668199eeec38b3fad112eeb7",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "8000",
 							"path": [
 								"api",
 								"v1",
@@ -401,11 +391,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8000/api/v1/subcategories",
+							"raw": "{{baseUrl}}/api/v1/subcategories",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "8000",
 							"path": [
 								"api",
 								"v1",
@@ -433,11 +422,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8000/api/v1/subcategories",
+							"raw": "{{baseUrl}}/api/v1/subcategories",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "8000",
 							"path": [
 								"api",
 								"v1",
@@ -472,11 +460,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8000/api/v1/subcategories/66810ecc956254355761c3",
+							"raw": "{{baseUrl}}/api/v1/subcategories/66810ecc956254355761c3",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "8000",
 							"path": [
 								"api",
 								"v1",
@@ -502,11 +489,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8000/api/v1/subcategories/66857e2e78c789f1220a0a96",
+							"raw": "{{baseUrl}}/api/v1/subcategories/66857e2e78c789f1220a0a96",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "8000",
 							"path": [
 								"api",
 								"v1",
@@ -532,11 +518,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8000/api/v1/subcategories/66857e3778c789f1220a0a98",
+							"raw": "{{baseUrl}}/api/v1/subcategories/66857e3778c789f1220a0a98",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "8000",
 							"path": [
 								"api",
 								"v1",
@@ -570,11 +555,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8000/api/v1/categories/66857d852d70fc2ff8ac0448/subcategories",
+							"raw": "{{baseUrl}}/api/v1/categories/66857d852d70fc2ff8ac0448/subcategories",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "8000",
 							"path": [
 								"api",
 								"v1",
@@ -601,11 +585,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8000/api/v1/categories/66857d852d70fc2ff8ac0448/subcategories",
+							"raw": "{{baseUrl}}/api/v1/categories/66857d852d70fc2ff8ac0448/subcategories",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "8000",
 							"path": [
 								"api",
 								"v1",
@@ -669,11 +652,10 @@
 							]
 						},
 						"url": {
-							"raw": "localhost:8000/api/v1/users",
+							"raw": "{{baseUrl}}/api/v1/users",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "8000",
 							"path": [
 								"api",
 								"v1",
@@ -701,11 +683,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8000/api/v1/users",
+							"raw": "{{baseUrl}}/api/v1/users",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "8000",
 							"path": [
 								"api",
 								"v1",
@@ -745,11 +726,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8000/api/v1/users/669a430e36ec7311170e435f",
+							"raw": "{{baseUrl}}/api/v1/users/669a430e36ec7311170e435f",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "8000",
 							"path": [
 								"api",
 								"v1",
@@ -788,11 +768,10 @@
 							]
 						},
 						"url": {
-							"raw": "localhost:8000/api/v1/users/6697ca1953a4cdf66d31ca40",
+							"raw": "{{baseUrl}}/api/v1/users/6697ca1953a4cdf66d31ca40",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "8000",
 							"path": [
 								"api",
 								"v1",
@@ -818,11 +797,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8000/api/v1/users/changePassword/669c23430ab34bfb9247594b",
+							"raw": "{{baseUrl}}/api/v1/users/changePassword/669c23430ab34bfb9247594b",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "8000",
 							"path": [
 								"api",
 								"v1",
@@ -849,11 +827,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8000/api/v1/users/6697ca1953a4cdf66d31ca40",
+							"raw": "{{baseUrl}}/api/v1/users/6697ca1953a4cdf66d31ca40",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "8000",
 							"path": [
 								"api",
 								"v1",
@@ -916,11 +893,10 @@
 							]
 						},
 						"url": {
-							"raw": "localhost:8000/api/v1/products",
+							"raw": "{{baseUrl}}/api/v1/products",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "8000",
 							"path": [
 								"api",
 								"v1",
@@ -936,11 +912,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8000/api/v1/products",
+							"raw": "{{baseUrl}}/api/v1/products",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "8000",
 							"path": [
 								"api",
 								"v1",
@@ -993,11 +968,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8000/api/v1/products/6683ee8da7410b603587fea9",
+							"raw": "{{baseUrl}}/api/v1/products/6683ee8da7410b603587fea9",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "8000",
 							"path": [
 								"api",
 								"v1",
@@ -1023,11 +997,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8000/api/v1/products/668692f5b9b2f26618fd6cb1",
+							"raw": "{{baseUrl}}/api/v1/products/668692f5b9b2f26618fd6cb1",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "8000",
 							"path": [
 								"api",
 								"v1",
@@ -1053,11 +1026,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8000/api/v1/products/6683ee8da7410b603587fea9",
+							"raw": "{{baseUrl}}/api/v1/products/6683ee8da7410b603587fea9",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "8000",
 							"path": [
 								"api",
 								"v1",
@@ -1100,11 +1072,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8000/api/v1/auth/signup",
+							"raw": "{{baseUrl}}/api/v1/auth/signup",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "8000",
 							"path": [
 								"api",
 								"v1",

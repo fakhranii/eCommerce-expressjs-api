@@ -16,7 +16,7 @@ import {
   updateCategoryValidator,
 } from "../utils/validators/categoryvalidator.js";
 import subCategoriesRoute from "../routes/subCategoryRoute.js";
-import { verifyToken } from "../services/authService.js";
+import { allowedTo, verifyToken } from "../services/authService.js";
 
 const router = Router();
 router.use("/:categoryId/subcategories", subCategoriesRoute);
@@ -26,6 +26,7 @@ router
   .get(getCategories)
   .post(
     verifyToken,
+    allowedTo("admin", "manager"),
     uploadCategoryImage,
     resizeImages,
     createCategoryValidator,
@@ -35,10 +36,17 @@ router
   .route("/:id")
   .get(getCategoryValidator, getCategory)
   .patch(
+    verifyToken,
+    allowedTo("admin", "manager"),
     uploadCategoryImage,
     resizeImages,
     updateCategoryValidator,
     updateCategory
   )
-  .delete(deleteCategoryValidator, deleteCategory);
+  .delete(
+    verifyToken,
+    allowedTo("admin"),
+    deleteCategoryValidator,
+    deleteCategory
+  );
 export default router;

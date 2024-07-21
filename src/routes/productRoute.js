@@ -1,4 +1,3 @@
-// const { Router } = require("express");
 import { Router } from "express";
 import {
   createProduct,
@@ -15,11 +14,15 @@ import {
   updateProductValidator,
   getProductValidator,
 } from "../utils/validators/productValidator.js";
+import { allowedTo, verifyToken } from "../services/authService.js";
+
 const router = Router();
 
 router
   .route("/")
   .post(
+    verifyToken,
+    allowedTo("admin", "manager"),
     uploadProductImages,
     resizeProductImages,
     createProductValidator,
@@ -30,11 +33,18 @@ router
   .route("/:id")
   .get(getProductValidator, getProduct)
   .patch(
+    verifyToken,
+    allowedTo("admin", "manager"),
     uploadProductImages,
     resizeProductImages,
     updateProductValidator,
     updateProduct
   )
-  .delete(deleteProductValidator, deleteProduct);
+  .delete(
+    verifyToken,
+    allowedTo("admin"),
+    deleteProductValidator,
+    deleteProduct
+  );
 
 export default router;

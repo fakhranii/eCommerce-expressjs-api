@@ -17,6 +17,7 @@ import {
   getUserValidator,
   updateUserValidator,
 } from "../utils/validators/userValidator.js";
+import { allowedTo, verifyToken } from "../services/authService.js";
 
 const router = Router();
 
@@ -26,13 +27,27 @@ router
 
 router
   .route("/")
-  .post(uploadUserImage, resizeUserImage, createUserValidator, createUser)
+  .post(
+    verifyToken,
+    allowedTo("admin"),
+    uploadUserImage,
+    resizeUserImage,
+    createUserValidator,
+    createUser
+  )
   .get(getUsers);
 
 router
   .route("/:id")
-  .get(getUserValidator, getUser)
-  .patch(uploadUserImage, resizeUserImage, updateUserValidator, updateUser)
-  .delete(deleteUserValidator, deleteUser);
+  .get(verifyToken, allowedTo("admin"), getUserValidator, getUser)
+  .patch(
+    verifyToken,
+    allowedTo("admin"),
+    uploadUserImage,
+    resizeUserImage,
+    updateUserValidator,
+    updateUser
+  )
+  .delete(verifyToken, allowedTo("admin"), deleteUserValidator, deleteUser);
 
 export default router;

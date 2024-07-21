@@ -10,7 +10,7 @@ import UserModel from "../models/userModel.js";
 /**
  * @desc create new user
  * @route POST /api/v1/users
- * @access Private
+ * @access private/Admin
  */
 export const uploadUserImage = uploadSingleImage("profileImage");
 export const resizeUserImage = asyncHandler(async (req, res, next) => {
@@ -32,7 +32,7 @@ export const createUser = createOne(UserModel);
 /**
  * @desc update specific user by id
  * @route PATCH /api/v1/users
- * @access Private
+ * @access private/Admin
  */
 export const updateUser = asyncHandler(async (req, res, next) => {
   const document = await UserModel.findByIdAndUpdate(
@@ -60,21 +60,21 @@ export const updateUser = asyncHandler(async (req, res, next) => {
 /**
  * @desc get specific user by id
  * @route GET /api/v1/users/:id
- * @access Private
+ * @access private/Admin
  */
 export const getUser = getOne(UserModel);
 
 /**
  * @desc get list of users
  * @route GET /api/v1/users/
- * @access Private
+ * @access private/Admin
  */
 export const getUsers = getAll(UserModel);
 
 /**
  * @desc delete specific user by id
  * @route DELETE /api/v1/users/:id
- * @access Private
+ * @access private/Admin
  */
 // export const deleteUser = deleteOne(UserModel);
 export const deleteUser = asyncHandler(async (req, res) => {
@@ -93,7 +93,7 @@ export const deleteUser = asyncHandler(async (req, res) => {
 /**
  * @desc  change user password id
  * @route DELETE /api/v1/users/password/:id
- * @access Private
+ * @access  private/Admin
  */
 export const changeUserPassword = asyncHandler(async (req, res, next) => {
   const document = await UserModel.findByIdAndUpdate(

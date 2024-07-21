@@ -18,22 +18,23 @@ export const uploadCategoryImage = uploadSingleImage("image");
 // image processing
 export const resizeImages = asyncHandler(async (req, res, next) => {
   const filename = `category-${uuidv4()}-${Date.now()}.jpeg`;
-  await sharp(req.file.buffer)
-    .resize(600, 600)
-    .toFormat("jpeg")
-    .jpeg({ quality: 90 })
-    .toFile(`src/uploads/categories/${filename}`);
+  if (req.file) {
+    await sharp(req.file.buffer)
+      .resize(600, 600)
+      .toFormat("jpeg")
+      .jpeg({ quality: 90 })
+      .toFile(`src/uploads/categories/${filename}`);
 
-  // save the image into Database
-  req.body.image = filename;
-
+    // save the image into Database
+    req.body.image = filename;
+  }
   next();
 });
 
 /**
  * @desc create a new category
  * @route POST /api/v1/categories
- * @access private
+ * @access private/Admin-manger
  */
 export const createCategory = createOne(CategoryModel);
 
@@ -43,23 +44,24 @@ export const createCategory = createOne(CategoryModel);
  * @access public
  */
 export const getCategories = getAll(CategoryModel);
+
 /**
  * @desc get specific category
  * @route POST /api/v1/categories/:id
- * @access private
+ * @access public
  */
 export const getCategory = getOne(CategoryModel);
+
 /**
  * @desc update specific category
  * @route PATCH /api/v1/categories/:id
- * @access private
+ * @access private/Admin-manger
  */
-
 export const updateCategory = updateOne(CategoryModel);
 
 /**
  * @desc delete specific category
  * @route  DELETE /api/v1/categories/:id
- * @access private
+ * @access private/Admin
  */
 export const deleteCategory = deleteOne(CategoryModel);

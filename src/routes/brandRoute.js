@@ -14,17 +14,32 @@ import {
   updateBrand,
   uploadBrandImage,
 } from "../services/brandService.js";
+import { allowedTo, verifyToken } from "../services/authService.js";
 
 const router = Router();
 
 router
   .route("/")
-  .post(uploadBrandImage, resizeImages, createBrandValidator, createBrand)
+  .post(
+    verifyToken,
+    allowedTo("admin", "manager"),
+    uploadBrandImage,
+    resizeImages,
+    createBrandValidator,
+    createBrand
+  )
   .get(getBrands);
 router
   .route("/:id")
   .get(getBrandValidator, getBrand)
-  .patch(uploadBrandImage, resizeImages, updateBrandValidator, updateBrand)
-  .delete(deleteBrandValidator, deleteBrand);
+  .patch(
+    verifyToken,
+    allowedTo("admin", "manager"),
+    uploadBrandImage,
+    resizeImages,
+    updateBrandValidator,
+    updateBrand
+  )
+  .delete(verifyToken, allowedTo("admin"), deleteBrandValidator, deleteBrand);
 
 export default router;
