@@ -13,6 +13,9 @@ const userSchema = Schema(
       lowercase: true,
     },
     passwordChangedAt: Date,
+    passwordResetCode: String,
+    passwordResetExpires: Date,
+    passwordResetVerified: Boolean,
 
     email: {
       type: String,

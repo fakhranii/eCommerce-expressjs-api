@@ -1,9 +1,12 @@
+import * as crypto from "crypto";
+
 import asyncHandler from "express-async-handler";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 
 import UserModel from "../models/userModel.js";
 import { ApiError } from "../utils/classes/apiError.js";
+import { sendEmail } from "../utils/sendEmail.js";
 
 const createToken = (payload) =>
   jwt.sign({ userId: payload }, process.env.JWT_SECRET, {
@@ -104,6 +107,9 @@ export const verifyToken = asyncHandler(async (req, res, next) => {
   next();
 });
 
+/**
+ * @desc Authorization (user permission) ["admin", "manager"]
+ */
 export const allowedTo = (...roles) =>
   asyncHandler(async (req, res, next) => {
     // 1 ) access the roles
@@ -116,3 +122,46 @@ export const allowedTo = (...roles) =>
     }
     next();
   });
+
+/**
+ * @desc forgot password
+ * @route POST /api/v1/auth/forgotPassword
+ * @access public
+ */
+export const forgotPassword = asyncHandler(async (req, res, next) => {
+  // 1 ) Find user by email
+  const user = await UserModel.findOne({ email: req.body.email });
+  if (!user) {
+    return next(
+      new ApiError(`There is no user with this email: ${req.body.email}`, 404)
+    );
+  }
+  // 2 ) if user exists, Generate random 6 digits (using js)
+  const resetCode = Math.floor(100000 + Math.random() * 900000).toString();
+  const hashedResetCode = crypto
+    .createHash("sha256")
+    .update(resetCode)
+    .digest("hex");
+
+  // 3 ) save hashed password reset code in db
+  user.passwordResetCode = hashedResetCode;
+
+  // 4 ) add expiration time to the password reset code (10 min)
+  user.passwordResetExpires = Date.now() + 10 * 60 * 1000;
+  user.passwordResetVerified = false;
+
+  // save do db
+  user.save();
+
+  const message = `Hi ${user.name},\n We received a request to reset the password on your E-shop Account. \n ${resetCode} \n Enter this code to complete the reset. \n Thanks for helping us keep your account secure.\n The E-shop Team`;
+
+  // 5 ) send the reset code via email
+  await sendEmail({
+    email: user.email,
+    subject: "Your password rese code - [valid for 10 min]",
+    message,
+  });
+  res
+    .status(200)
+    .json({ status: "Success", message: "Reset code sent to email" });
+});
