@@ -151,17 +151,26 @@ export const forgotPassword = asyncHandler(async (req, res, next) => {
   user.passwordResetVerified = false;
 
   // save do db
-  user.save();
+  await user.save();
 
   const message = `Hi ${user.name},\n We received a request to reset the password on your E-shop Account. \n ${resetCode} \n Enter this code to complete the reset. \n Thanks for helping us keep your account secure.\n The E-shop Team`;
 
   // 5 ) send the reset code via email
-  await sendEmail({
-    email: user.email,
-    subject: "Your password rese code - [valid for 10 min]",
-    message,
-  });
-  res
-    .status(200)
-    .json({ status: "Success", message: "Reset code sent to email" });
+  try {
+    await sendEmail({
+      email: user.email,
+      subject: "Your password rese code - [valid for 10 min]",
+      message,
+    });
+    res
+      .status(200)
+      .json({ status: "Success", message: "Reset code sent to email" });
+  } catch (err) {
+    user.passwordResetCode = undefined;
+    user.passwordResetExpires = undefined;
+    user.passwordResetVerified = undefined;
+
+    await user.save();
+    return next(new ApiError(`There is an error in sending email`, 500));
+  }
 });

@@ -12,15 +12,13 @@ export const sendEmail = async (options) => {
   //   },
   // });
 
-  const transporter = nodemailer.createTransport({
-    host: "smtp.ethereal.email",
-    port: 587,
+  let transporter = nodemailer.createTransport({
+    service: "gmail",
     auth: {
-      user: "stuart72@ethereal.email",
-      pass: "U63vC5ubZyxYTaVxn5",
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASSWORD,
     },
   });
-
   // 2 - define email options .. like [from , to, subject, emailContent]
   const mailOptions = {
     from: "E-shop App <Ziad El-fakhrany>",
