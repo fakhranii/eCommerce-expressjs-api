@@ -2,6 +2,7 @@ import * as crypto from "crypto";
 
 import asyncHandler from "express-async-handler";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 import UserModel from "../models/userModel.js";
 import { ApiError } from "../utils/classes/apiError.js";
@@ -227,7 +228,7 @@ export const resetPassword = asyncHandler(async (req, res, next) => {
   // Because if he wanna change password again, he should follow the same rules from scratch
   // Which make it secured !
   user.password = req.body.newPassword;
-  // user.passwordChangedAt = Date.now();
+  user.passwordChangedAt = Date.now();
   user.passwordResetCode = undefined;
   user.passwordResetExpires = undefined;
   user.passwordResetVerified = undefined;

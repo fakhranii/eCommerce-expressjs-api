@@ -137,3 +137,32 @@ export const changeUserPasswordValidator = [
     }),
   validationMiddleware,
 ];
+
+export const updateLoggedUserDataValidator = [
+  body("name")
+    .optional()
+    .custom((value, { req }) => {
+      req.body.slug = slugify(value);
+      return true;
+    }),
+  check("email")
+    .optional()
+    .isEmail()
+    .withMessage("Invalid email address")
+    .custom((val) =>
+      UserModel.findOne({ email: val }).then((user) => {
+        if (user) {
+          return Promise.reject(new Error("E-mail already in user"));
+        }
+      })
+    ),
+  check("profileImage").optional(),
+  check("phone")
+    .optional()
+    .isMobilePhone(["ar-EG", "ar-SA"])
+    .withMessage(
+      "Invaild phone number only accepted Egy and SA phone numberss"
+    ),
+
+  validationMiddleware,
+];

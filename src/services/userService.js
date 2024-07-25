@@ -6,6 +6,7 @@ import bcrypt from "bcryptjs";
 import { uploadSingleImage } from "../middlewares/uploadImagesMiddleware.js";
 import { createOne, getAll, getOne } from "./handlerFactory.js";
 import UserModel from "../models/userModel.js";
+import { createJwtToken } from "../utils/createToken.js";
 
 /**
  * @desc create new user
@@ -77,10 +78,10 @@ export const getUsers = getAll(UserModel);
  * @access private/Admin
  */
 // export const deleteUser = deleteOne(UserModel);
-export const deleteUser = asyncHandler(async (req, res) => {
+export const deactivateUser = asyncHandler(async (req, res) => {
   const deActivate = await UserModel.findByIdAndUpdate(
     req.params.id,
-    { active: (req.body.active = false) },
+    { active: false },
     { new: true }
   );
 
@@ -112,4 +113,79 @@ export const changeUserPassword = asyncHandler(async (req, res, next) => {
     );
   }
   res.status(200).json({ data: document });
+});
+
+/**
+ * @desc get logged user data
+ * @route GET /api/v1/users/getMe
+ * @access protected
+ */
+export const getLoggedUserData = asyncHandler(async (req, res, next) => {
+  req.params.id = req.user._id;
+  next();
+});
+
+/**
+ * @desc update logged user password
+ * @route PATCH /api/v1/users/updateMyPassword
+ * @access protected
+ */
+export const updateLoggedUserPassword = asyncHandler(async (req, res, next) => {
+  // update user password based on user payload (req.user._id)
+  const user = await UserModel.findByIdAndUpdate(
+    req.user._id,
+    {
+      password: await bcrypt.hash(req.body.newPassword, 12),
+      passwordChangedAt: Date.now(),
+    },
+    { new: true }
+  );
+  if (!user) {
+    return next(new ApiError(`No user found with id ${req.user._id}`, 404));
+  }
+  const token = createJwtToken(user._id);
+  res.status(200).json({ data: user, token });
+});
+
+/**
+ * @desc update logged user data (witout pass & role)
+ * @route PATCH /api/v1/users/updateMe
+ * @access protected
+ */
+export const updateLoggedUserData = asyncHandler(async (req, res, next) => {
+  // update user password based on user payload (req.user._id)
+  const user = await UserModel.findByIdAndUpdate(
+    req.user._id,
+    {
+      name: req.body.name,
+      email: req.body.email,
+      phone: req.body.phone,
+      profileImage: req.body.profileImage,
+    },
+    { new: true }
+  );
+  // if (!user) {
+  //   return next(new ApiError(`No user found with id ${req.user._id}`, 404));
+  // }
+  res.status(200).json({ data: user });
+});
+
+/**
+ * @desc deactive logged user
+ * @route DELETE /api/v1/users/deactiveMe
+ * @access protected
+ */
+export const deactivateLoggedUser = asyncHandler(async (req, res, next) => {
+  await UserModel.findByIdAndUpdate(req.user._id, { active: false });
+  res.status(204).json({ message: "deactivate successfully" });
+});
+
+/**
+ * @desc active logged user
+ * @route DELETE /api/v1/users/deactiveMe
+ * @access protected
+ */
+export const activateLoggedUser = asyncHandler(async (req, res, next) => {
+  await UserModel.findByIdAndUpdate(req.user._id, { active: true });
+  res.status(200).json({ message: "activate successfully" });
 });
