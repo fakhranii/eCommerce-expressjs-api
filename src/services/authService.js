@@ -1,17 +1,17 @@
 import * as crypto from "crypto";
 
 import asyncHandler from "express-async-handler";
-import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 
 import UserModel from "../models/userModel.js";
 import { ApiError } from "../utils/classes/apiError.js";
 import { sendEmail } from "../utils/sendEmail.js";
+import { createJwtToken } from "../utils/createToken.js";
 
-const createToken = (payload) =>
-  jwt.sign({ userId: payload }, process.env.JWT_SECRET, {
-    expiresIn: process.env.JWT_EXPIRE_TIME,
-  });
+// const createToken = (payload) =>
+//   jwt.sign({ userId: payload }, process.env.JWT_SECRET, {
+//     expiresIn: process.env.JWT_EXPIRE_TIME,
+//   });
 
 /**
  * @desc   signup
@@ -28,7 +28,7 @@ export const signUp = asyncHandler(async (req, res, next) => {
   });
 
   // 2 ) generate jwt
-  const token = createToken(user._id);
+  const token = createJwtToken(user._id);
   res.status(201).json({ data: user, token });
 });
 
@@ -46,7 +46,7 @@ export const login = asyncHandler(async (req, res, next) => {
     return next(new ApiError("InCorrect email or password", 401));
   }
   // 3 ) generate token and send it to client side
-  const token = createToken(user._id);
+  const token = createJwtToken(user._id);
   res.status(200).json({ data: user, token });
 });
 
@@ -173,4 +173,68 @@ export const forgotPassword = asyncHandler(async (req, res, next) => {
     await user.save();
     return next(new ApiError(`There is an error in sending email`, 500));
   }
+});
+
+/**
+ * @desc verify password reset coe
+ * @route POST /api/v1/auth/verifyResetCode
+ * @access public
+ */
+export const verifyPasswordResetCode = asyncHandler(async (req, res, next) => {
+  // 1 ) get user based on reset code, i need to hash if first
+  const hashedResetCode = crypto
+    .createHash("sha256")
+    .update(req.body.resetCode)
+    .digest("hex");
+
+  const user = await UserModel.findOne({
+    passwordResetCode: hashedResetCode,
+    passwordResetExpires: { $gt: Date.now() },
+  });
+  if (!user) {
+    return next(new ApiError(`Reset code invalid or expired`, 403));
+  }
+
+  // 2 ) check if the reset code is valid and make passwordResetVerified true
+  user.passwordResetVerified = true;
+  await user.save();
+
+  res.status(200).json({ status: "Success" });
+});
+
+/**
+ * @desc reset the password
+ * @route POST /api/v1/auth/resetPassword
+ * @access public
+ */
+
+export const resetPassword = asyncHandler(async (req, res, next) => {
+  // 1 ) get user based on email
+  const user = await UserModel.findOne({ email: req.body.email });
+  if (!user) {
+    return next(
+      new ApiError(`There is no user with this email ${req.body.email},404`)
+    );
+  }
+
+  // 2 ) check if reset code verified
+  if (!user.passwordResetVerified) {
+    return next(new ApiError(`reset code not verified`, 400));
+  }
+
+  // 3 ) If all process are valid change the password
+  // And before we save the user object to db, we must set undefined to other documents that we used,
+  // Because if he wanna change password again, he should follow the same rules from scratch
+  // Which make it secured !
+  user.password = req.body.newPassword;
+  // user.passwordChangedAt = Date.now();
+  user.passwordResetCode = undefined;
+  user.passwordResetExpires = undefined;
+  user.passwordResetVerified = undefined;
+
+  await user.save();
+
+  // 4 ) After change password we should return new token
+  const token = createJwtToken(user._id);
+  res.status(200).json({ data: user, token });
 });

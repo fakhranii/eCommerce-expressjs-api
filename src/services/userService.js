@@ -100,7 +100,7 @@ export const changeUserPassword = asyncHandler(async (req, res, next) => {
     req.params.id,
     {
       password: await bcrypt.hash(req.body.newPassword, 12),
-      passwordChangedAt: Date.now(),
+      // passwordChangedAt: Date.now(),
     },
     {
       new: true,
