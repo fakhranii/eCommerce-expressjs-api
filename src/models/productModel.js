@@ -71,10 +71,25 @@ const productSchema = Schema(
       default: 0,
     },
   },
-  { timestamps: true }
+  {
+    timestamps: true,
+    //? the next two options are to enable virtual populate
+    toJSON: { virtuals: true },
+    toObjeect: { virtuals: true },
+  }
 );
 
-// Mongoose query middleware -> return the product with its parent category
+//! Mongoose query middleware -> return the product with its parent category
+
+/**
+ * @desc we will return virtual field called reviews contain all reviews form model "Review" based on foreignField: "product" equal field "_id" inside the ProductModel itself
+ */
+productSchema.virtual("reviews", {
+  ref: "Review",
+  foreignField: "product",
+  localField: "_id",
+});
+
 productSchema.pre(/^find/, function (next) {
   this.populate({
     path: "category",

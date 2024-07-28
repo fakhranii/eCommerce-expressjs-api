@@ -977,7 +977,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/api/v1/users/6697ca1953a4cdf66d31ca40",
+							"raw": "{{baseUrl}}/api/v1/users/66a25f577ffbb1b85b5f4ce3",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -985,7 +985,7 @@
 								"api",
 								"v1",
 								"users",
-								"6697ca1953a4cdf66d31ca40"
+								"66a25f577ffbb1b85b5f4ce3"
 							]
 						}
 					},
@@ -1580,7 +1580,7 @@
 					"response": []
 				},
 				{
-					"name": "router.deletdeactivate logged user",
+					"name": "deactivate logged user",
 					"event": [
 						{
 							"listen": "test",
@@ -1616,7 +1616,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/api/v1/users/updateMe",
+							"raw": "{{baseUrl}}/api/v1/users/deactiveMe",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -1624,7 +1624,264 @@
 								"api",
 								"v1",
 								"users",
-								"updateMe"
+								"deactiveMe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "activate logged user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"ahmet\",\r\n    \"password\": \"kjwksfnek\",\r\n    \"role\": \"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/users/activeMe",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"activeMe"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "reviews",
+			"item": [
+				{
+					"name": "create review",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"very nice product maan\",\r\n    \"ratings\": 4,\r\n    \"product\": \"66965ad68e75bcac77aa4f63\",\r\n    \"user\": \"66a25f577ffbb1b85b5f4ce3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/reviews/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reviews",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get list of reviews",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"very nice product maan\",\r\n    \"ratings\": 4,\r\n    \"product\": \"66965ad68e75bcac77aa4f63\",\r\n    \"user\": \"66a25f577ffbb1b85b5f4ce3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/reviews/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reviews",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get review by id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"very nice product maan\",\r\n    \"ratings\": 4,\r\n    \"product\": \"66965ad68e75bcac77aa4f63\",\r\n    \"user\": \"66a25f577ffbb1b85b5f4ce3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/reviews/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reviews",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update review by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"very nice product title\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/reviews/66a3bbbc8403bee4140598c9",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reviews",
+								"66a3bbbc8403bee4140598c9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete review by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"very nice product maan\",\r\n    \"ratings\": 4,\r\n    \"product\": \"66965ad68e75bcac77aa4f63\",\r\n    \"user\": \"66a25f577ffbb1b85b5f4ce3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/reviews/66a3bbbc8403bee4140598c9",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reviews",
+								"66a3bbbc8403bee4140598c9"
 							]
 						}
 					},

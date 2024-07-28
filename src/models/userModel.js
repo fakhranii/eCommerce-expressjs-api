@@ -1,5 +1,6 @@
 import bcrypt from "bcryptjs";
 import { model, Schema } from "mongoose";
+import { title } from "process";
 
 const userSchema = Schema(
   {
@@ -39,6 +40,8 @@ const userSchema = Schema(
       type: Boolean,
       default: true,
     },
+    //? Embedded document
+    // addreses: [{ title: String, postalCode: Number, street: String }],
   },
   { timestamps: true }
 );

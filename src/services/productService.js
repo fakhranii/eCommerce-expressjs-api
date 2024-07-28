@@ -70,7 +70,7 @@ export const getProducts = getAll(ProductModel);
  * @route GET /api/v1/products/:id
  * @access public
  */
-export const getProduct = getOne(ProductModel);
+export const getProduct = getOne(ProductModel, "reviews");
 
 /**
  * @desc update specific product by id

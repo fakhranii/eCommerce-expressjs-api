@@ -12,10 +12,16 @@ const deleteOne = (Model) =>
     res.status(204).send();
   });
 
-const getOne = (Model) =>
+const getOne = (Model, populationOption) =>
   asyncHandler(async (req, res, next) => {
     const { id } = req.params;
-    const document = await Model.findById(id);
+    // 1 ) Build Query
+    let query = Model.findById(id);
+    if (populationOption) {
+      query = query.populate(populationOption);
+    }
+    // 2 ) excute query
+    const document = await query; 
     if (!document) {
       return next(new ApiError(`No document found with id ${id}`, 404));
     }

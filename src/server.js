@@ -8,6 +8,7 @@ import morgan from "morgan";
 import dotenv from "dotenv";
 
 import categoryRoute from "./routes/categoryRoute.js";
+import reviewRoute from "./routes/reviewRoute.js";
 import subCategoryRoute from "./routes/subCategoryRoute.js";
 import brandRoute from "./routes/brandRoute.js";
 import productRoute from "./routes/productRoute.js";
@@ -34,6 +35,7 @@ if (process.env.NODE_ENV === "development") {
 
 // Mount Routes
 app.use("/api/v1/users", userRoute);
+app.use("/api/v1/reviews", reviewRoute);
 app.use("/api/v1/categories", categoryRoute);
 app.use("/api/v1/subcategories", subCategoryRoute);
 app.use("/api/v1/brands", brandRoute);
