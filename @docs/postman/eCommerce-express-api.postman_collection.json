@@ -1128,7 +1128,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/api/v1/products/6683ee8da7410b603587fea9",
+							"raw": "{{baseUrl}}/api/v1/products/66965ad68e75bcac77aa4f63",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -1136,7 +1136,7 @@
 								"api",
 								"v1",
 								"products",
-								"6683ee8da7410b603587fea9"
+								"66965ad68e75bcac77aa4f63"
 							]
 						}
 					},
@@ -1244,7 +1244,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\" : \"ahmed\",\r\n    \"email\": \"ahmed@gmail.com\",\r\n    \"password\": \"ahmed1122\",\r\n    \"confirmPassword\": \"ahmed1122\" \r\n}",
+							"raw": "{\r\n    \"name\" : \"user3\",\r\n    \"email\": \"user1255444@gmail.com\",\r\n    \"password\": \"user1122\",\r\n    \"confirmPassword\": \"user1122\" \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1285,7 +1285,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"ahmed@gmail.com\",\r\n    \"password\": \"ahmed99\"\r\n}",
+							"raw": "{\r\n    \"email\": \"user51@gmail.com\",\r\n    \"password\": \"user1122\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1795,7 +1795,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/api/v1/reviews/",
+							"raw": "{{baseUrl}}/api/v1/reviews/66a6ad1ed9a427126b19e085",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -1803,7 +1803,7 @@
 								"api",
 								"v1",
 								"reviews",
-								""
+								"66a6ad1ed9a427126b19e085"
 							]
 						}
 					},
@@ -1882,6 +1882,94 @@
 								"v1",
 								"reviews",
 								"66a3bbbc8403bee4140598c9"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "products/reviews",
+			"item": [
+				{
+					"name": "get all reviews on specific product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/products/66965ad68e75bcac77aa4f63/reviews",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"products",
+								"66965ad68e75bcac77aa4f63",
+								"reviews"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get specific review on specific product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/products/66965ad68e75bcac77aa4f63/reviews/66a7ae43985b7a0f1924a19b",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"products",
+								"66965ad68e75bcac77aa4f63",
+								"reviews",
+								"66a7ae43985b7a0f1924a19b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create review on specific product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"very nice stauff\",\r\n    \"ratings\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/products/66965ad68e75bcac77aa4f63/reviews",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"products",
+								"66965ad68e75bcac77aa4f63",
+								"reviews"
 							]
 						}
 					},

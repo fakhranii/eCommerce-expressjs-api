@@ -14,10 +14,12 @@ import {
   updateProductValidator,
   getProductValidator,
 } from "../utils/validators/productValidator.js";
+import reviewRoute from "./reviewRoute.js";
 import { allowedTo, verifyToken } from "../services/authService.js";
 
 const router = Router();
 
+router.use("/:productId/reviews", reviewRoute); //! Nested Route 
 router
   .route("/")
   .post(

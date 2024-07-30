@@ -65,10 +65,11 @@ const productSchema = Schema(
       type: Number,
       min: [1, "Rating must be above or equal 1.0"],
       max: [5, "Rating must be below or equal 5.0"],
+      default: 4.3,
     },
     ratingsQuantity: {
       type: Number,
-      default: 0,
+      default: 20,
     },
   },
   {

@@ -9,6 +9,9 @@ const deleteOne = (Model) =>
     if (!document) {
       return next(new ApiError(`No document found with id ${id}`, 404));
     }
+
+    // to trigger 'remove' events in mongooose middleware
+    await document.remove();
     res.status(204).send();
   });
 
@@ -21,7 +24,7 @@ const getOne = (Model, populationOption) =>
       query = query.populate(populationOption);
     }
     // 2 ) excute query
-    const document = await query; 
+    const document = await query;
     if (!document) {
       return next(new ApiError(`No document found with id ${id}`, 404));
     }
@@ -38,6 +41,8 @@ const updateOne = (Model) =>
         new ApiError(`No document found with id ${req.params.id}`, 404)
       );
     }
+    // trigger 'save' events in models files
+    document.save();
     res.status(200).json({ data: document });
   });
 

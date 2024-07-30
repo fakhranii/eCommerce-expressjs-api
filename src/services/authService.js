@@ -76,7 +76,6 @@ export const verifyToken = asyncHandler(async (req, res, next) => {
 
   // 2 ) verfify token (check if it valid, And no changes happen)
   const decoded = jwt.verify(token, process.env.JWT_SECRET);
-  console.log(decoded);
   // 3 ) check if user exists
   const currentUser = await UserModel.findById(decoded.userId);
   if (!currentUser) {

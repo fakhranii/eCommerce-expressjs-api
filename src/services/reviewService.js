@@ -7,12 +7,28 @@ import {
   updateOne,
 } from "./handlerFactory.js";
 
+// we use it in create review with nested route
+export const setProductIdAndUserIdToBody = (req, res, next) => {
+  if (!req.body.product) req.body.product = req.params.productId;
+  if (!req.body.user) req.body.user = req.user._id;
+  next();
+};
+
 /**
  * @desc create a new review
  * @route POST /api/v1/reviews
  * @access protected / user
  */
 export const createReview = createOne(ReviewModel);
+
+// Nested Route
+// /api/v1/products/:productId/reviews
+export const createFilterObj = (req, res, next) => {
+  let filterObj = {};
+  if (req.params.productId) filterObj = { product: req.params.productId };
+  req.filterObj = filterObj;
+  next();
+};
 
 /**
  * @desc get list of Reviews
