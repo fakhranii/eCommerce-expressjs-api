@@ -36,6 +36,23 @@ const userSchema = Schema(
       enum: ["user", "admin", "manager"],
       default: "user",
     },
+    // child refrence (one to many ) relation
+    wishlist: [
+      {
+        type: Schema.ObjectId,
+        ref: "Product",
+      },
+    ],
+    addresses: [
+      {
+        id: { type: Schema.Types.ObjectId }, // to create unique id to every address
+        alias: String, // to specify work or home or office
+        details: String,
+        phone: String,
+        city: String,
+        postalCode: String,
+      },
+    ],
     active: {
       type: Boolean,
       default: true,
