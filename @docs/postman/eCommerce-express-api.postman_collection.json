@@ -627,7 +627,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Ahmed\"\r\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1244,7 +1244,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\" : \"user3\",\r\n    \"email\": \"user1255444@gmail.com\",\r\n    \"password\": \"user1122\",\r\n    \"confirmPassword\": \"user1122\" \r\n}",
+							"raw": "{\r\n    \"name\" : \"user_ziad\",\r\n    \"email\": \"user_ziad@gmail.com\",\r\n    \"password\": \"ziad1122\",\r\n    \"confirmPassword\": \"ziad1122\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1795,7 +1795,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/api/v1/reviews/66a6ad1ed9a427126b19e085",
+							"raw": "{{baseUrl}}/api/v1/reviews/66a939d50a3cbc411a2bece7",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -1803,7 +1803,7 @@
 								"api",
 								"v1",
 								"reviews",
-								"66a6ad1ed9a427126b19e085"
+								"66a939d50a3cbc411a2bece7"
 							]
 						}
 					},
@@ -1826,7 +1826,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"very nice product title\"\r\n}",
+							"raw": "{\r\n    \"title\": \"very nice product title\",\r\n    \"ratings\": 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1834,7 +1834,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/api/v1/reviews/66a3bbbc8403bee4140598c9",
+							"raw": "{{baseUrl}}/api/v1/reviews/66a934b2ca929fe513ff9a78",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -1842,7 +1842,7 @@
 								"api",
 								"v1",
 								"reviews",
-								"66a3bbbc8403bee4140598c9"
+								"66a934b2ca929fe513ff9a78"
 							]
 						}
 					},
@@ -1865,7 +1865,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"very nice product maan\",\r\n    \"ratings\": 4,\r\n    \"product\": \"66965ad68e75bcac77aa4f63\",\r\n    \"user\": \"66a25f577ffbb1b85b5f4ce3\"\r\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1873,7 +1873,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/api/v1/reviews/66a3bbbc8403bee4140598c9",
+							"raw": "{{baseUrl}}/api/v1/reviews/66a93e57ca058d9764676aa4",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -1881,7 +1881,7 @@
 								"api",
 								"v1",
 								"reviews",
-								"66a3bbbc8403bee4140598c9"
+								"66a93e57ca058d9764676aa4"
 							]
 						}
 					},
@@ -1952,7 +1952,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"very nice stauff\",\r\n    \"ratings\": 1\r\n}",
+							"raw": "{\r\n    \"title\": \"last one\",\r\n    \"ratings\": 5\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1970,6 +1970,457 @@
 								"products",
 								"66965ad68e75bcac77aa4f63",
 								"reviews"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "wishlist",
+			"item": [
+				{
+					"name": "add product to wishlist",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productId\": \"66965ad68e75bcac77aa4f63\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/wishlist",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"wishlist"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove product to wishlist",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productId\": \"66965ad68e75bcac77aa4f63\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/wishlist/66965ad68e75bcac77aa4f63",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"wishlist",
+								"66965ad68e75bcac77aa4f63"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get logged user wishlist data",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productId\": \"66965ad68e75bcac77aa4f63\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/wishlist/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"wishlist",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user addresses",
+			"item": [
+				{
+					"name": "add user address",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"alias\": \"work\",\r\n    \"details\": \"jwskjnekajneknks\",\r\n    \"phone\": \"011255656\",\r\n    \"city\": \"alex\",\r\n    \"postalCode\": \"6566556\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/addresses",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"addresses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove user address by adressId",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productId\": \"66965ad68e75bcac77aa4f63\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/addresses/66acf42423ea984ad5baba00",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"addresses",
+								"66acf42423ea984ad5baba00"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "git list of user addresses",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productId\": \"66965ad68e75bcac77aa4f63\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/addresses",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"addresses"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "coupons",
+			"item": [
+				{
+					"name": "create coupon",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"HAPPY_MM_YEAR\",\r\n    \"expire\": \"03/25/2024\",\r\n    \"discount\": 25\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/coupons",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"coupons"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all coupons",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"HAPPY_NEW_YEAR\",\r\n    \"expire\": \"03/25/2024\",\r\n    \"discount\": 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/coupons",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"coupons"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get specific coupon by id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"HAPPY_NEW_YEAR\",\r\n    \"expire\": \"03/25/2024\",\r\n    \"discount\": 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/coupons/66acf85d23ea984ad5baba28",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"coupons",
+								"66acf85d23ea984ad5baba28"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update specific coupon by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"updated!\",\r\n    \"expire\": \"03/25/2024\",\r\n    \"discount\": 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/coupons/66acf7d223ea984ad5baba19",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"coupons",
+								"66acf7d223ea984ad5baba19"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete specific coupon by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"HAPPY_NEW_YEAR\",\r\n    \"expire\": \"03/25/2024\",\r\n    \"discount\": 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/coupons/66acf7d223ea984ad5baba19",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"coupons",
+								"66acf7d223ea984ad5baba19"
 							]
 						}
 					},

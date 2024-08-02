@@ -7,18 +7,10 @@ import express from "express";
 import morgan from "morgan";
 import dotenv from "dotenv";
 
-import categoryRoute from "./routes/categoryRoute.js";
-import reviewRoute from "./routes/reviewRoute.js";
-import subCategoryRoute from "./routes/subCategoryRoute.js";
-import brandRoute from "./routes/brandRoute.js";
-import productRoute from "./routes/productRoute.js";
-import userRoute from "./routes/userRoute.js";
-import authRoute from "./routes/authRoute.js";
-import addressRoute from "./routes/addressesRoute.js";
-import wishlistRouter from "./routes/wishlistRoute.js";
 import db from "./config/database.js";
 import { ApiError } from "./utils/classes/apiError.js";
 import { globalErrorHandler } from "./middlewares/errorMiddleware.js";
+import mountRoutes from "./routes/main.js";
 dotenv.config();
 
 // DB connection
@@ -34,17 +26,8 @@ app.use(express.static(path.join(__dirname, "uploads")));
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev")); //* when we need to trigger a middleware we use (app.use(middleware))
 }
-
-// Mount Routes
-app.use("/api/v1/users", userRoute);
-app.use("/api/v1/reviews", reviewRoute);
-app.use("/api/v1/categories", categoryRoute);
-app.use("/api/v1/subcategories", subCategoryRoute);
-app.use("/api/v1/brands", brandRoute);
-app.use("/api/v1/products", productRoute);
-app.use("/api/v1/auth", authRoute);
-app.use("/api/v1/wishlist", wishlistRouter);
-app.use("/api/v1/addresses", addressRoute);
+// Routes
+mountRoutes(app);
 
 app.all("*", (req, res, next) => {
   next(new ApiError(`Can't find this route: ${req.originalUrl}`, 400));
