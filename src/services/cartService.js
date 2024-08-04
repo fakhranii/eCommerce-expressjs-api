@@ -1,7 +1,8 @@
+import asyncHandler from "express-async-handler";
+
 import ProductModel from "../models/productModel.js";
 import CartModel from "../models/cartModel.js";
 import CouponModel from "../models/couponModel.js";
-import asyncHandler from "express-async-handler";
 import { ApiError } from "../utils/classes/apiError.js";
 
 const calcTotalCartPrice = (cart) => {
@@ -91,7 +92,7 @@ export const removeSpecificCartItem = asyncHandler(async (req, res, next) => {
   );
 
   calcTotalCartPrice(cart);
-  cart.save();
+  await cart.save();
 
   res.status(200).json({
     status: "success",

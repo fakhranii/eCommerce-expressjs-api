@@ -1,4 +1,5 @@
 import { Router } from "express";
+
 import {
   createProduct,
   deleteProduct,
@@ -19,7 +20,7 @@ import { allowedTo, verifyToken } from "../services/authService.js";
 
 const router = Router();
 
-router.use("/:productId/reviews", reviewRoute); //! Nested Route 
+router.use("/:productId/reviews", reviewRoute); //! Nested Route
 router
   .route("/")
   .post(

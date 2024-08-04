@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { allowedTo, verifyToken } from "../services/authService.js";
 
+import { allowedTo, verifyToken } from "../services/authService.js";
 import {
   createCashOrder,
   findAllOrders,

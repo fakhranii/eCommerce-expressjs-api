@@ -1,7 +1,7 @@
 import slugify from "slugify";
 import bcrypt from "bcryptjs";
-
 import { body, check, param } from "express-validator";
+
 import { validationMiddleware } from "../../middlewares/validatorMiddleware.js";
 import UserModel from "../../models/userModel.js";
 

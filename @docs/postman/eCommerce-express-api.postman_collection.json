@@ -2448,7 +2448,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"productId\": \"66965ad68e75bcac77aa4f63\",\r\n    \"color\": \"orange\"\r\n}",
+							"raw": "{\r\n    \"productId\": \"66965ad68e75bcac77aa4f63\",\r\n    \"color\": \"bb\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2471,6 +2471,47 @@
 				},
 				{
 					"name": "get logged user cart",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/cart",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get logged user cart Copy",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -2661,6 +2702,214 @@
 								"v1",
 								"cart",
 								"applyCoupon"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "orders",
+			"item": [
+				{
+					"name": "create cash order",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"shippingAddress\": {\r\n        \"details\": \"Address details\",\r\n        \"phone\": \"01121932293\",\r\n        \"postalcode\": \"44414\",\r\n        \"city\": \"cairo\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/orders/66af647fdb3db6ee4bd316f5",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"orders",
+								"66af647fdb3db6ee4bd316f5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get list of orders (admin)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"shippingAddress\": {\r\n        \"details\": \"Address details\",\r\n        \"phone\": \"01121932293\",\r\n        \"postalcode\": \"44414\",\r\n        \"city\": \"cairo\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/orders/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"orders",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get specific order by id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"shippingAddress\": {\r\n        \"details\": \"Address details\",\r\n        \"phone\": \"01121932293\",\r\n        \"postalcode\": \"44414\",\r\n        \"city\": \"cairo\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/orders/66af64a0db3db6ee4bd31706",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"orders",
+								"66af64a0db3db6ee4bd31706"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update order to paid (admin)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"shippingAddress\": {\r\n        \"details\": \"Address details\",\r\n        \"phone\": \"01121932293\",\r\n        \"postalcode\": \"44414\",\r\n        \"city\": \"cairo\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/orders/66af64a0db3db6ee4bd31706/pay",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"orders",
+								"66af64a0db3db6ee4bd31706",
+								"pay"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update order to deliveried (admin)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"shippingAddress\": {\r\n        \"details\": \"Address details\",\r\n        \"phone\": \"01121932293\",\r\n        \"postalcode\": \"44414\",\r\n        \"city\": \"cairo\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/orders/66af64a0db3db6ee4bd31706/deliver",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"orders",
+								"66af64a0db3db6ee4bd31706",
+								"deliver"
 							]
 						}
 					},

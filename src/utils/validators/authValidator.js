@@ -1,6 +1,6 @@
 import slugify from "slugify";
-
 import { check } from "express-validator";
+
 import UserModel from "../../models/userModel.js";
 import { validationMiddleware } from "../../middlewares/validatorMiddleware.js";
 

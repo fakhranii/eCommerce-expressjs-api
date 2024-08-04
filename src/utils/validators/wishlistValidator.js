@@ -1,4 +1,5 @@
 import { check } from "express-validator";
+
 import ProductModel from "../../models/productModel.js";
 import { ApiError } from "../classes/apiError.js";
 import { validationMiddleware } from "../../middlewares/validatorMiddleware.js";

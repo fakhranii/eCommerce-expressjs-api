@@ -1,5 +1,6 @@
-import UserModel from "../models/userModel.js";
 import asyncHandler from "express-async-handler";
+
+import UserModel from "../models/userModel.js";
 
 /**
  * @desc    Add address to user addresses list

@@ -1,4 +1,5 @@
 import { Router } from "express";
+
 import { allowedTo, verifyToken } from "../services/authService.js";
 import {
   createCoupon,
