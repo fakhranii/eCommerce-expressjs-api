@@ -1,4 +1,6 @@
 // const stripe = require("stripe")(process.env.STRIPE_SECRET);
+import stripePackage from "stripe";
+const stripe = stripePackage(process.env.STRIPE_SECRET);
 import asyncHandler from "express-async-handler";
 
 import { getAll, getOne } from "./handlerFactory.js";
@@ -133,7 +135,7 @@ export const checkoutSession = asyncHandler(async (req, res, next) => {
     );
   }
 
-  // 2) Get order price depend on cart price "Check if coupon apply"
+  // 2) Get order price depend on cart price "Check if coupon apply "
   const cartPrice = cart.totalPriceAfterDiscount
     ? cart.totalPriceAfterDiscount
     : cart.totalCartPrice;
@@ -142,11 +144,16 @@ export const checkoutSession = asyncHandler(async (req, res, next) => {
 
   // 3) Create stripe checkout session
   const session = await stripe.checkout.sessions.create({
+    payment_method_types: ["card"],
     line_items: [
       {
-        name: req.user.name,
-        amount: totalOrderPrice * 100,
-        currency: "egp",
+        price_data: {
+          currency: "egp",
+          product_data: {
+            name: req.user.name,
+          },
+          unit_amount: totalOrderPrice * 100,
+        },
         quantity: 1,
       },
     ],
@@ -155,7 +162,9 @@ export const checkoutSession = asyncHandler(async (req, res, next) => {
     cancel_url: `${req.protocol}://${req.get("host")}/cart`,
     customer_email: req.user.email,
     client_reference_id: req.params.cartId,
-    metadata: req.body.shippingAddress,
+    metadata: {
+      shipping_address: req.body.shippingAddress,
+    },
   });
 
   // 4) send session to response

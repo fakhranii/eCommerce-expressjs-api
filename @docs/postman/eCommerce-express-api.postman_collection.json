@@ -1244,7 +1244,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\" : \"zrzr\",\r\n    \"email\": \"zrzr@gmail.com\",\r\n    \"password\": \"zrzr1122\",\r\n    \"confirmPassword\": \"zrzr1122\"\r\n}",
+							"raw": "{\r\n    \"name\" : \"mona\",\r\n    \"email\": \"mona@gmail.com\",\r\n    \"password\": \"mona1122\",\r\n    \"confirmPassword\": \"mona1122\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1285,7 +1285,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"user3@gmail.com\",\r\n    \"password\": \"ziad1122\"\r\n}",
+							"raw": "{\r\n    \"email\": \"user@gmail.com\",\r\n    \"password\": \"ziad1122\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2448,7 +2448,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"productId\": \"66965ad68e75bcac77aa4f63\",\r\n    \"color\": \"bb\"\r\n}",
+							"raw": "{\r\n    \"productId\": \"66965ad68e75bcac77aa4f63\",\r\n    \"color\": \"ff\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2471,47 +2471,6 @@
 				},
 				{
 					"name": "get logged user cart",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{JWT}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseUrl}}/api/v1/cart",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"cart"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get logged user cart Copy",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -2910,6 +2869,49 @@
 								"orders",
 								"66af64a0db3db6ee4bd31706",
 								"deliver"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get checkout session",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/orders/checkout-session/66b1e1fa1218ef8b4d6b2995",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"orders",
+								"checkout-session",
+								"66b1e1fa1218ef8b4d6b2995"
 							]
 						}
 					},

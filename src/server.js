@@ -6,6 +6,8 @@ const __dirname = path.dirname(__filename);
 import express from "express";
 import morgan from "morgan";
 import dotenv from "dotenv";
+import cors from "cors";
+import compression from "compression";
 
 import db from "./config/database.js";
 import { ApiError } from "./utils/classes/apiError.js";
@@ -18,6 +20,13 @@ db();
 
 // express app
 const app = express();
+
+// enable other domains to access the your apis
+app.use(cors());
+app.options("*", cors());
+
+// compress all responses that make it light & faster
+app.use(compression());
 
 //? Always we use middlewares before Routes
 app.use(express.json());
