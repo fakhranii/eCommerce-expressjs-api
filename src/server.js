@@ -13,6 +13,7 @@ import db from "./config/database.js";
 import { ApiError } from "./utils/classes/apiError.js";
 import { globalErrorHandler } from "./middlewares/errorMiddleware.js";
 import mountRoutes from "./routes/main.js";
+import { webhookCheckout } from './services/orderService.js'
 dotenv.config();
 
 // DB connection
@@ -27,6 +28,13 @@ app.options("*", cors());
 
 // compress all responses that make it light & faster
 app.use(compression());
+
+// Checkout webhook
+app.post(
+  '/webhook-checkout',
+  express.raw({ type: 'application/json' }),
+  webhookCheckout
+);
 
 //? Always we use middlewares before Routes
 app.use(express.json());
