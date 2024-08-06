@@ -8,7 +8,7 @@ import {
   getSubCategory,
   setCategoryIdToBody,
   updateSubcategory,
-} from "../services/SubCateoryService.js";
+} from "../services/subCategoryService.js";
 import {
   createSubCategoryValidator,
   getSubCategoryValidator,
