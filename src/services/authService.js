@@ -8,6 +8,7 @@ import UserModel from "../models/userModel.js";
 import { ApiError } from "../utils/classes/apiError.js";
 import { sendEmail } from "../utils/sendEmail.js";
 import { createJwtToken } from "../utils/createToken.js";
+import { sanitizeUser } from "../utils/sanitizeData.js";
 
 // const createToken = (payload) =>
 //   jwt.sign({ userId: payload }, process.env.JWT_SECRET, {
@@ -30,7 +31,7 @@ export const signUp = asyncHandler(async (req, res, next) => {
 
   // 2 ) generate jwt
   const token = createJwtToken(user._id);
-  res.status(201).json({ data: user, token });
+  res.status(201).json({ data: sanitizeUser(user), token });
 });
 
 /**
@@ -48,7 +49,7 @@ export const login = asyncHandler(async (req, res, next) => {
   }
   // 3 ) generate token and send it to client side
   const token = createJwtToken(user._id);
-  res.status(200).json({ data: user, token });
+  res.status(200).json({ data: sanitizeUser(user), token });
 });
 
 /**

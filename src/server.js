@@ -8,12 +8,16 @@ import morgan from "morgan";
 import dotenv from "dotenv";
 import cors from "cors";
 import compression from "compression";
+import rateLimit from "express-rate-limit";
+import hpp from "hpp";
+import mongoSanitize from "express-mongo-sanitize";
 
 import db from "./config/database.js";
 import { ApiError } from "./utils/classes/apiError.js";
 import { globalErrorHandler } from "./middlewares/errorMiddleware.js";
 import mountRoutes from "./routes/main.js";
-import { webhookCheckout } from './services/orderService.js'
+import { webhookCheckout } from "./services/orderService.js";
+import sanitizeHtmlData from "./utils/sanitizeHtmlData.js";
 dotenv.config();
 
 // DB connection
@@ -31,19 +35,49 @@ app.use(compression());
 
 // Checkout webhook
 app.post(
-  '/webhook-checkout',
-  express.raw({ type: 'application/json' }),
+  "/webhook-checkout",
+  express.raw({ type: "application/json" }),
   webhookCheckout
 );
 
 //? Always we use middlewares before Routes
-app.use(express.json());
+app.use(express.json({ limit: "10kb" }));
 app.use(express.static(path.join(__dirname, "uploads")));
 
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev")); //* when we need to trigger a middleware we use (app.use(middleware))
 }
-// Routes
+
+// apply data sanitize to avoid sql injection & cross site scripting
+app.use(mongoSanitize()); // avoid nosql injection
+app.use(sanitizeHtmlData); // treat html scripts as normal strings
+
+// limit each ip to 100 req per window in (windowMs) time
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100,
+  message:
+    "Too many accounts created from this IP, please try again after an hour",
+});
+
+app.use("/api", limiter);
+
+// Middleware to protect against HTTP Parameter Pollution attacks
+// make sure to use it after express.JSON()
+app.use(
+  hpp({
+    // in case if I wanna hpp doesn't work with some parameters , write them here
+    whitelist: [
+      "price",
+      "sold",
+      "quantity",
+      "ratingsAverage",
+      "ratingsQuantity",
+    ],
+  })
+);
+
+// Mount All the Routes
 mountRoutes(app);
 
 app.all("*", (req, res, next) => {
