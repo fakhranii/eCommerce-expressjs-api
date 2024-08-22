@@ -11,6 +11,8 @@ import compression from "compression";
 import rateLimit from "express-rate-limit";
 import hpp from "hpp";
 import mongoSanitize from "express-mongo-sanitize";
+import csurf from "csurf";
+import cookieParser from "cookie-parser";
 
 import db from "./config/database.js";
 import { ApiError } from "./utils/classes/apiError.js";
@@ -18,6 +20,7 @@ import { globalErrorHandler } from "./middlewares/errorMiddleware.js";
 import mountRoutes from "./routes/main.js";
 import { webhookCheckout } from "./services/orderService.js";
 import sanitizeHtmlData from "./utils/sanitizeHtmlData.js";
+import helmet from "helmet";
 dotenv.config();
 
 // DB connection
@@ -25,6 +28,11 @@ db();
 
 // express app
 const app = express();
+
+app.use(helmet());
+
+app.use(cookieParser()); // should implement this line before ➡   app.use(csurf({ cookie: true }));
+app.use(csurf({ cookie: true }));
 
 // enable other domains to access the your apis
 app.use(cors());
